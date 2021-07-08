@@ -9,7 +9,11 @@ if (NOT TARGET Catch2)
     GIT_TAG        "v2.13.6"
     GIT_SHALLOW    On)
   FetchContent_MakeAvailable(Catch2)
-  list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/contrib)
+endif()
+
+if (TARGET Catch2)
+  get_target_property(CATCH2_SOURCE_DIR Catch2 SOURCE_DIR)
+  list(APPEND CMAKE_MODULE_PATH "${CATCH2_SOURCE_DIR}/contrib")
 endif()
 
 add_executable(speedyj-test
