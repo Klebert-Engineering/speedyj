@@ -3,6 +3,7 @@
 #include <limits>
 #include <ostream>
 #include <cassert>
+#include <string>
 
 namespace speedyj
 {
@@ -233,7 +234,7 @@ Stream& Stream::push(int s)
 Stream& Stream::push(double f)
 {
     checkedNext(*this);
-    ss_ << f;
+    ss_ << std::to_string(f);
     return *this;
 }
 
