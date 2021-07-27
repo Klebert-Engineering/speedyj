@@ -77,10 +77,10 @@ TEST_CASE("Numeric values", "[numeric-values]") {
       << (long long)1
       << (unsigned long long)1u
       << (double)1.1
-      << (float)1.1f
+      << (float)1.125f
       << sj::End;
 
-    REQUIRE(s.str() == "[1,1,1,1,1,1,1.1,1.1]");
+    REQUIRE(s.str() == "[1,1,1,1,1,1,1.1,1.125]");
 }
 
 TEST_CASE("Boolean values", "[boolean-values]") {
