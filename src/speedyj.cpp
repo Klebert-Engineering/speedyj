@@ -3,6 +3,7 @@
 #include <limits>
 #include <ostream>
 #include <cassert>
+#include <iomanip>
 
 namespace speedyj
 {
@@ -111,7 +112,7 @@ static void next(Stream& s)
 {
     if (s.state_.empty())
         return;
-   
+
     if (s.state().itemIdx > 0) {
         switch (s.state().type) {
         case StreamState::Array:
@@ -170,7 +171,9 @@ StreamState::StreamState(StreamState::Type t)
 {}
 
 Stream::Stream()
-{}
+{
+    ss_ << std::setprecision(std::numeric_limits<double>::digits10 + 1);
+}
 
 std::string Stream::str() const
 {
