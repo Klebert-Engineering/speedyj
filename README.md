@@ -4,6 +4,8 @@
 
 Speedyj is a tiny C++ library for JSON serialization.
 
+For optional Qt type support include `speedyj/speedyj-qt.hpp`.
+
 ## Building
 
 ```sh
