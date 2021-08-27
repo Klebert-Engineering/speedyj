@@ -34,6 +34,19 @@ target_compile_definitions(speedyj
   PRIVATE
     SPEEDYJ_BUILD=1)
 
+if (SPEEDYJ_QT)
+  find_package(Qt5 COMPONENTS Core REQUIRED)
+
+  target_sources(speedyj
+    PRIVATE
+      src/speedyj-qt.cpp
+      include/speedyj/speedyj-qt.hpp)
+
+  target_link_libraries(speedyj
+    PRIVATE
+      Qt5::Core)
+endif()
+
 target_compile_options(speedyj
   PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4 /WX>
