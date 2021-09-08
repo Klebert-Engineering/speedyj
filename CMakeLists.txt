@@ -15,7 +15,15 @@ endif()
 ## SpeedyJ
 ####
 
-add_library(speedyj SHARED
+option(SPEEDYJ_SHARED "Build speedyj as a shared library." OFF)
+set(SPEEDYJ_LINK STATIC)
+set(SPEEDYJ_SHARED_COMPILE_DEFINITION "")
+if (SPEEDYJ_SHARED)
+  set(SPEEDYJ_LINK SHARED)
+  set(SPEEDYJ_SHARED_COMPILE_DEFINITION SPEEDYJ_SHARED=1)
+endif()
+
+add_library(speedyj ${SPEEDYJ_LINK}
   src/speedyj.cpp
   include/speedyj/speedyj.hpp
   include/speedyj/speedyj-impl.hpp)
@@ -32,7 +40,9 @@ target_include_directories(speedyj
 
 target_compile_definitions(speedyj
   PRIVATE
-    SPEEDYJ_BUILD=1)
+    SPEEDYJ_BUILD=1
+  PUBLIC
+    ${SPEEDYJ_SHARED_COMPILE_DEFINITION})
 
 if (SPEEDYJ_QT)
   find_package(Qt5 COMPONENTS Core REQUIRED)
