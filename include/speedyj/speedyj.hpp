@@ -1,13 +1,17 @@
 #pragma once
 
-#if defined(_MSC_VER)
-    #if defined(SPEEDYJ_BUILD)
-        #define SPEEDYJ_EXPORT __declspec(dllexport)
+#if defined(SPEEDYJ_SHARED)
+    #if defined(_MSC_VER)
+        #if defined(SPEEDYJ_BUILD)
+            #define SPEEDYJ_EXPORT __declspec(dllexport)
+        #else
+            #define SPEEDYJ_EXPORT __declspec(dllimport)
+        #endif
     #else
-        #define SPEEDYJ_EXPORT __declspec(dllimport)
+        #define __attribute__ ((visibility ("default")))
     #endif
 #else
-    #define SPEEDYJ_EXPORT __attribute__ ((visibility ("default")))
+    #define SPEEDYJ_EXPORT
 #endif
 
 #include <string>
