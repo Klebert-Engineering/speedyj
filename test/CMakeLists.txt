@@ -6,7 +6,7 @@ Include(FetchContent)
 if (NOT TARGET Catch2)
   FetchContent_Declare(Catch2
     GIT_REPOSITORY "https://github.com/catchorg/Catch2.git"
-    GIT_TAG        "v2.13.6"
+    GIT_TAG        "v3.1.0"
     GIT_SHALLOW    On)
   FetchContent_MakeAvailable(Catch2)
 endif()
@@ -17,7 +17,6 @@ if (TARGET Catch2)
 endif()
 
 add_executable(speedyj-test
-  main.cpp
   stream.cpp)
 
 target_compile_options(speedyj-test
@@ -28,7 +27,7 @@ target_compile_options(speedyj-test
 target_link_libraries(speedyj-test
   PUBLIC
     speedyj
-    Catch2::Catch2)
+    Catch2::Catch2WithMain)
 
 include(CTest)
 include(Catch)
